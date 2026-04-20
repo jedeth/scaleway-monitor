@@ -6,6 +6,8 @@
 ![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-automatisé-green)
 ![Telegram](https://img.shields.io/badge/Telegram-rapport_quotidien-blue)
 ![Coût](https://img.shields.io/badge/coût_mensuel-0_€-brightgreen)
+![Projets](https://img.shields.io/badge/projets_Scaleway-2-orange)
+![Zones](https://img.shields.io/badge/zones-fr--par--1%20%2B%20fr--par--2-lightgrey)
 
 ---
 
@@ -64,19 +66,22 @@ Les actions (éteindre/démarrer) transitent par GitHub Actions qui appelle Scal
 - Alertes automatiques : IPs non attachées, volumes orphelins
 
 ### 🖥️ Instances
-- Liste de toutes les instances des deux projets Scaleway
-- Statut temps réel (running / stopped / transition)
+- Liste de toutes les instances des deux projets Scaleway, groupées par projet
+- Statut temps réel : 🟢 running / 🔴 stopped / 🟠 transition (starting/stopping)
 - Coût horaire par instance
-- **Bouton ⏻ Éteindre** (instance running)
-- **Bouton ▶ Démarrer** (instance stopped)
-- **Bouton ↺ Redémarrer** (instance running)
+- **Bouton ⏻ Éteindre** (instance running) → poweroff via GitHub Actions
+- **Bouton ▶ Démarrer** (instance stopped) → poweron via GitHub Actions
+- **Bouton ↺ Redémarrer** (instance running) → reboot via GitHub Actions
 - Modale de confirmation avant chaque action
+- Rechargement automatique des données ~90 secondes après l'action
+- Si le token GitHub n'est pas configuré → redirection automatique vers ⚙️ Config
 
 ### 💾 Stockage
-- Volumes avec taille, instance attachée, coût mensuel
-- Snapshots avec date de création, taille, coût mensuel
-- IPs flexibles : attachées vs **libres** (facturées inutilement ~1,44 €/mois chacune)
-- Alerte visuelle sur les IPs non attachées
+- Volumes avec taille, zone, instance attachée, coût mensuel
+- Snapshots avec date de création, taille, zone, coût mensuel
+- IPs flexibles par projet et par zone : attachées vs **libres** (facturées inutilement ~1,44 €/mois chacune)
+- Alerte visuelle en rouge sur les IPs non attachées
+- Coût total permanent affiché par projet
 
 ### ⚙️ Configuration
 - Saisie du token GitHub PAT (stocké en localStorage, jamais dans le code)
@@ -106,10 +111,12 @@ Rapport automatique chaque matin à 8h (heure de Paris) :
 
 ## Projets Scaleway surveillés
 
-| Projet | ID | Zones |
-|---|---|---|
-| `etabl-ia.fr` | `3a6a9f92-bf5b-4ee9-9c8a-9ee7f48b18bd` | fr-par-1 |
-| `TESTPROD` | `3373abc8-dccd-4529-9dc7-cfd185632ac5` | fr-par-1, fr-par-2 |
+| Projet | ID | Zones | Ressources actives |
+|---|---|---|---|
+| `etabl-ia.fr` | `3a6a9f92-bf5b-4ee9-9c8a-9ee7f48b18bd` | fr-par-1 | 1 instance (DEV1-L), 1 volume 40 Go, 1 snapshot 40 Go, 2 IPs |
+| `TESTPROD` | `3373abc8-dccd-4529-9dc7-cfd185632ac5` | fr-par-1, fr-par-2 | 3 IPs flexibles en fr-par-2 (dont 2 non attachées), 1 groupe de sécurité |
+
+> Les IPs non attachées du projet TESTPROD représentent ~2,88 €/mois facturés inutilement.
 
 ---
 
@@ -133,9 +140,9 @@ scaleway-monitor/
 ├── rapport_daily.py                    ← Rapport Telegram quotidien
 │
 └── .github/workflows/
-    ├── refresh-data.yml                ← Cron horaire → data/scaleway.json
-    ├── scaleway-rapport-daily.yml      ← Cron 8h → Telegram
-    └── action-instance.yml            ← Workflow déclenché par la PWA
+    ├── refresh-data.yml                ← Cron horaire (6h–22h) → data/scaleway.json
+    ├── scaleway-rapport-daily.yml      ← Cron 8h → rapport Telegram
+    └── action-instance.yml            ← Déclenché par la PWA → action sur instance
 ```
 
 ---
@@ -153,10 +160,11 @@ scaleway-monitor/
 - Peut aussi être déclenché manuellement depuis l'onglet Actions de GitHub
 
 ### `action-instance.yml` — Actions sur instances
-- **Déclencheur :** `workflow_dispatch` (déclenché par la PWA via l'API GitHub)
+- **Déclencheur :** `workflow_dispatch` déclenché par la PWA via l'API GitHub (`api.github.com`)
 - **Inputs :** `action` (poweroff/poweron/reboot), `instance_id`, `zone`
-- **Actions :** `scripts/action_instance.py` → attend l'état final → rafraîchit `data/scaleway.json`
-- **Durée :** ~1-2 minutes (attente transition + commit)
+- **Actions :** `scripts/action_instance.py` → polling jusqu'à l'état final → commit `data/scaleway.json`
+- **Durée :** ~1-2 minutes (attente transition Scaleway + rafraîchissement données)
+- **Sécurité :** le token Scaleway reste dans GitHub Secrets — le navigateur n'y accède jamais
 
 ---
 
@@ -265,12 +273,24 @@ Cocher : ✅ `repo` + ✅ `workflow`
 
 ---
 
+## Changelog
+
+| Date | Version | Changement |
+|---|---|---|
+| 20/04/2026 | v1.0 | PWA initiale + rapport Telegram quotidien |
+| 20/04/2026 | v1.1 | Surveillance multi-projets (établ-ia.fr + TESTPROD) + multi-zones (fr-par-1, fr-par-2) |
+| 20/04/2026 | v1.2 | Boutons action instances (éteindre/démarrer/redémarrer) via GitHub Actions |
+| 20/04/2026 | v1.3 | Service Worker v3 — réseau d'abord, correction bug cache |
+
+---
+
 ## Roadmap
 
-- [ ] **B3 — Instance éphémère GPU** : créer une instance depuis un snapshot → transcrire un audio → supprimer l'instance (garder le snapshot)
-- [ ] Graphique historique des coûts sur 30 jours
-- [ ] Notification Telegram sur dépassement de seuil
-- [ ] Support multi-zones automatique (découverte dynamique)
+- [ ] **B3 — Instance éphémère GPU** : créer une instance depuis un snapshot → transcrire un audio → supprimer l'instance (garder le snapshot). Économie : ~0,32 € par transcription vs 30,96 €/jour en continu.
+- [ ] Graphique historique des coûts sur 30 jours (IndexedDB local)
+- [ ] Notification Telegram sur dépassement de seuil configurable
+- [ ] Nettoyage des IPs non attachées depuis la PWA
+- [ ] Support multi-zones automatique (découverte dynamique sans hardcoding)
 - [ ] Gestion des Managed Databases Scaleway
 
 ---
