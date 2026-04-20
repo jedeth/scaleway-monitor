@@ -1,0 +1,14 @@
+{
+  "mis_a_jour": "2026-04-20T11:46:42.477225+00:00",
+  "zone": "fr-par-1",
+  "cout_mois": 0.0,
+  "stockage": {
+    "volumes_go": 0,
+    "snaps_go": 0,
+    "images_go": 0,
+    "cout_total": 0
+  },
+  "instances": [],
+  "volumes": [],
+  "snapshots": []
+}

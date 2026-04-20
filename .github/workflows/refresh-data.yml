@@ -1,0 +1,38 @@
+name: Refresh données Scaleway (horaire)
+
+on:
+  schedule:
+    - cron: "0 6-22 * * *"   # toutes les heures de 6h à 22h UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Fetch données Scaleway
+        env:
+          SCALEWAY_SECRET_KEY:   ${{ secrets.SCALEWAY_SECRET_KEY }}
+          SCALEWAY_PROJECT_ID:   ${{ secrets.SCALEWAY_PROJECT_ID }}
+          SCALEWAY_DEFAULT_ZONE: ${{ secrets.SCALEWAY_DEFAULT_ZONE }}
+        run: |
+          mkdir -p data
+          python scripts/fetch_data.py > data/scaleway.json
+
+      - name: Commit data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/scaleway.json
+          git diff --staged --quiet || git commit -m "data: $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          git push
