@@ -1,40 +1,138 @@
 {
-  "mis_a_jour": "2026-04-20T11:47:07.690512+00:00",
-  "zone": "fr-par-1",
-  "cout_mois": 36.17,
-  "stockage": {
-    "volumes_go": 40.0,
-    "snaps_go": 40.0,
-    "images_go": 0.0,
-    "cout_total": 3.2
-  },
-  "instances": [
-    {
-      "id": "112dde72-95ff-422a-831b-2dcaf32d92fa",
-      "nom": "scw-gracious-wilbur",
-      "type": "DEV1-L",
-      "etat": "running",
-      "ip": "51.15.143.223",
-      "zone": "fr-par-1",
-      "tarif_heure": 0.048
+  "mis_a_jour": "2026-04-20T11:58:55.230128+00:00",
+  "cout_mois": 63.18,
+  "projets": {
+    "etabl-ia.fr": {
+      "id": "3a6a9f92-bf5b-4ee9-9c8a-9ee7f48b18bd",
+      "zones": [
+        "fr-par-1"
+      ],
+      "instances": [
+        {
+          "id": "112dde72-95ff-422a-831b-2dcaf32d92fa",
+          "nom": "scw-gracious-wilbur",
+          "type": "DEV1-L",
+          "etat": "running",
+          "ip": "51.15.143.223",
+          "zone": "fr-par-1",
+          "tarif_heure": 0.048
+        }
+      ],
+      "volumes": [
+        {
+          "id": "41eb4847-27ba-44e2-86a8-285fc5c84d5e",
+          "nom": "etabli-data",
+          "taille_go": 40.0,
+          "zone": "fr-par-1",
+          "serveur": "scw-gracious-wilbur",
+          "cout_mois": 1.6
+        }
+      ],
+      "snapshots": [
+        {
+          "id": "69a84654-ebc8-405b-91a7-9d068ab83789",
+          "nom": "image-scw-gracious-wilbur_snap_1",
+          "taille_go": 40.0,
+          "zone": "fr-par-1",
+          "date": "2026-04-17",
+          "cout_mois": 1.6
+        }
+      ],
+      "ips_flexibles": [
+        {
+          "id": "5559183e-8faf-4714-aac7-f1836d91c310",
+          "adresse": null,
+          "zone": "fr-par-1",
+          "attachee": true,
+          "serveur": "scw-gracious-wilbur",
+          "cout_mois": 0
+        },
+        {
+          "id": "53ec66ed-e69b-434a-b9a9-f307cab8eee0",
+          "adresse": "51.15.143.223",
+          "zone": "fr-par-1",
+          "attachee": true,
+          "serveur": "scw-gracious-wilbur",
+          "cout_mois": 0
+        }
+      ],
+      "groupes_securite": [
+        {
+          "id": "9e6c281e-cdd2-4dde-b5b5-8173f17c93d4",
+          "nom": "Default security group",
+          "zone": "fr-par-1",
+          "stateful": true,
+          "par_defaut": true
+        }
+      ],
+      "stockage": {
+        "volumes_go": 40.0,
+        "snaps_go": 40.0,
+        "images_go": 0.0,
+        "cout_total": 3.2
+      },
+      "cout_ips_libres": 0
+    },
+    "TESTPROD": {
+      "id": "3373abc8-dccd-4529-9dc7-cfd185632ac5",
+      "zones": [
+        "fr-par-1",
+        "fr-par-2"
+      ],
+      "instances": [],
+      "volumes": [
+        {
+          "id": "794b077a-4511-4003-859a-9c9f95d9635d",
+          "nom": "Ubuntu Jammy GPU OS 12 passthrough",
+          "taille_go": 20.0,
+          "zone": "fr-par-2",
+          "serveur": null,
+          "cout_mois": 0.8
+        }
+      ],
+      "snapshots": [],
+      "ips_flexibles": [
+        {
+          "id": "f8e7b228-87e6-4f39-a7c6-a1443aa93ebc",
+          "adresse": null,
+          "zone": "fr-par-2",
+          "attachee": false,
+          "serveur": null,
+          "cout_mois": 1.44
+        },
+        {
+          "id": "6d0c208c-54c3-4d07-aee5-fa3121cef4b1",
+          "adresse": "51.159.128.85",
+          "zone": "fr-par-2",
+          "attachee": false,
+          "serveur": null,
+          "cout_mois": 1.44
+        },
+        {
+          "id": "8aef3f56-0801-485b-9c4d-03845c2880db",
+          "adresse": "51.159.119.210",
+          "zone": "fr-par-2",
+          "attachee": false,
+          "serveur": null,
+          "cout_mois": 1.44
+        }
+      ],
+      "groupes_securite": [
+        {
+          "id": "740e54fa-2be2-4df4-8223-f0275379ae45",
+          "nom": "Default security group",
+          "zone": "fr-par-2",
+          "stateful": false,
+          "par_defaut": true
+        }
+      ],
+      "stockage": {
+        "volumes_go": 20.0,
+        "snaps_go": 0.0,
+        "images_go": 0.0,
+        "cout_total": 0.8
+      },
+      "cout_ips_libres": 4.32
     }
-  ],
-  "volumes": [
-    {
-      "id": "41eb4847-27ba-44e2-86a8-285fc5c84d5e",
-      "nom": "etabli-data",
-      "taille_go": 40.0,
-      "serveur": "scw-gracious-wilbur",
-      "cout_mois": 1.6
-    }
-  ],
-  "snapshots": [
-    {
-      "id": "69a84654-ebc8-405b-91a7-9d068ab83789",
-      "nom": "image-scw-gracious-wilbur_snap_1",
-      "taille_go": 40.0,
-      "date": "2026-04-17",
-      "cout_mois": 1.6
-    }
-  ]
+  }
 }
