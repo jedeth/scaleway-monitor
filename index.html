@@ -13,20 +13,21 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg:       #0f0f1a;
-      --bg2:      #1a1a2e;
-      --bg3:      #252540;
-      --blue:     #00b4d8;
-      --green:    #06d6a0;
-      --orange:   #ff9f43;
-      --red:      #ee5a24;
-      --text:     #e0e0f0;
-      --muted:    #8888aa;
-      --radius:   14px;
-      --nav-h:    64px;
+      --bg:     #0f0f1a;
+      --bg2:    #1a1a2e;
+      --bg3:    #252540;
+      --blue:   #00b4d8;
+      --green:  #06d6a0;
+      --orange: #ff9f43;
+      --red:    #ee5a24;
+      --text:   #e0e0f0;
+      --muted:  #8888aa;
+      --radius: 14px;
+      --nav-h:  64px;
     }
 
-    html, body { height: 100%; background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
+    html, body { height: 100%; background: var(--bg); color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
 
     #app { display: flex; flex-direction: column; height: 100dvh; }
 
@@ -34,100 +35,148 @@
     .header {
       padding: 16px 20px 12px;
       padding-top: max(16px, env(safe-area-inset-top));
-      background: var(--bg2);
-      border-bottom: 1px solid var(--bg3);
+      background: var(--bg2); border-bottom: 1px solid var(--bg3);
       display: flex; align-items: center; justify-content: space-between;
     }
     .header h1 { font-size: 18px; font-weight: 700; color: var(--blue); }
-    .header .refresh-btn {
-      background: none; border: none; color: var(--muted); cursor: pointer;
-      font-size: 20px; padding: 4px; border-radius: 8px; transition: color .2s;
-    }
-    .header .refresh-btn:hover { color: var(--blue); }
+    .refresh-btn { background: none; border: none; color: var(--muted); cursor: pointer;
+      font-size: 22px; padding: 4px 8px; border-radius: 8px; transition: color .2s; }
+    .refresh-btn:hover { color: var(--blue); }
+    .refresh-btn.spinning { animation: spin .8s linear infinite; }
     .freshness { font-size: 11px; color: var(--muted); }
 
     /* Content */
-    .content { flex: 1; overflow-y: auto; padding: 16px; padding-bottom: calc(var(--nav-h) + 16px); }
+    .content { flex: 1; overflow-y: auto; padding: 16px;
+      padding-bottom: calc(var(--nav-h) + 16px); }
 
-    /* Navigation */
+    /* Nav */
     .nav {
       position: fixed; bottom: 0; left: 0; right: 0;
-      height: var(--nav-h);
-      padding-bottom: env(safe-area-inset-bottom);
-      background: var(--bg2);
-      border-top: 1px solid var(--bg3);
-      display: flex;
+      height: var(--nav-h); padding-bottom: env(safe-area-inset-bottom);
+      background: var(--bg2); border-top: 1px solid var(--bg3); display: flex;
     }
-    .nav-btn {
-      flex: 1; display: flex; flex-direction: column; align-items: center;
+    .nav-btn { flex: 1; display: flex; flex-direction: column; align-items: center;
       justify-content: center; gap: 4px; background: none; border: none;
-      color: var(--muted); cursor: pointer; transition: color .2s; font-size: 11px;
-    }
+      color: var(--muted); cursor: pointer; transition: color .2s; font-size: 11px; }
     .nav-btn .icon { font-size: 22px; }
     .nav-btn.active { color: var(--blue); }
 
     /* Cards */
-    .card {
-      background: var(--bg2); border-radius: var(--radius);
-      padding: 16px; margin-bottom: 12px; border: 1px solid var(--bg3);
-    }
+    .card { background: var(--bg2); border-radius: var(--radius);
+      padding: 16px; margin-bottom: 12px; border: 1px solid var(--bg3); }
     .card-title { font-size: 12px; color: var(--muted); text-transform: uppercase;
       letter-spacing: .05em; margin-bottom: 8px; }
     .card-value { font-size: 32px; font-weight: 700; }
     .card-sub { font-size: 13px; color: var(--muted); margin-top: 4px; }
-
     .row { display: flex; gap: 12px; margin-bottom: 12px; }
     .row .card { flex: 1; margin-bottom: 0; }
 
-    /* Couleurs valeurs */
     .val-blue   { color: var(--blue); }
     .val-green  { color: var(--green); }
     .val-orange { color: var(--orange); }
     .val-red    { color: var(--red); }
 
     /* Instance item */
-    .item {
-      background: var(--bg2); border-radius: var(--radius);
-      padding: 14px 16px; margin-bottom: 10px; border: 1px solid var(--bg3);
-      display: flex; align-items: center; gap: 12px;
-    }
+    .item { background: var(--bg2); border-radius: var(--radius);
+      padding: 14px 16px; margin-bottom: 10px; border: 1px solid var(--bg3); }
+    .item-top { display: flex; align-items: center; gap: 12px; }
     .item-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
     .item-dot.running { background: var(--green); box-shadow: 0 0 6px var(--green); }
     .item-dot.stopped { background: var(--muted); }
+    .item-dot.starting, .item-dot.stopping { background: var(--orange);
+      animation: pulse 1s infinite; }
     .item-info { flex: 1; min-width: 0; }
-    .item-name { font-weight: 600; font-size: 15px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .item-name { font-weight: 600; font-size: 15px; white-space: nowrap;
+      overflow: hidden; text-overflow: ellipsis; }
     .item-type { font-size: 12px; color: var(--muted); margin-top: 2px; }
     .item-cost { text-align: right; flex-shrink: 0; }
     .item-cost .main { font-size: 15px; font-weight: 600; }
     .item-cost .sub  { font-size: 11px; color: var(--muted); }
 
-    /* Barre de stockage */
-    .storage-bar { background: var(--bg3); border-radius: 4px; height: 8px; margin: 8px 0 4px; overflow: hidden; }
-    .storage-bar-fill { height: 100%; border-radius: 4px; background: linear-gradient(90deg, var(--blue), var(--green)); transition: width .5s; }
+    /* Boutons action */
+    .item-actions { display: flex; gap: 8px; margin-top: 12px; padding-top: 12px;
+      border-top: 1px solid var(--bg3); }
+    .btn-action { flex: 1; padding: 8px 4px; border: none; border-radius: 10px;
+      font-size: 13px; font-weight: 600; cursor: pointer; transition: opacity .2s;
+      display: flex; align-items: center; justify-content: center; gap: 6px; }
+    .btn-action:active { opacity: .7; }
+    .btn-action:disabled { opacity: .4; cursor: not-allowed; }
+    .btn-stop   { background: rgba(238,90,36,.15); color: var(--red); border: 1px solid rgba(238,90,36,.3); }
+    .btn-start  { background: rgba(6,214,160,.15);  color: var(--green); border: 1px solid rgba(6,214,160,.3); }
+    .btn-reboot { background: rgba(0,180,216,.15);  color: var(--blue);  border: 1px solid rgba(0,180,216,.3); }
+    .btn-action .btn-spinner { width: 14px; height: 14px; border: 2px solid currentColor;
+      border-top-color: transparent; border-radius: 50%; animation: spin .6s linear infinite; display: none; }
+    .btn-action.loading .btn-spinner { display: block; }
+    .btn-action.loading .btn-label { display: none; }
 
-    /* Section title */
+    /* Modale confirmation */
+    .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,.7);
+      display: flex; align-items: flex-end; justify-content: center;
+      z-index: 100; padding: 16px; padding-bottom: calc(16px + env(safe-area-inset-bottom));
+      opacity: 0; pointer-events: none; transition: opacity .2s; }
+    .modal-overlay.show { opacity: 1; pointer-events: all; }
+    .modal { background: var(--bg2); border-radius: 20px; padding: 24px;
+      width: 100%; max-width: 400px; border: 1px solid var(--bg3); }
+    .modal h3 { font-size: 17px; margin-bottom: 8px; }
+    .modal p  { font-size: 14px; color: var(--muted); margin-bottom: 20px; }
+    .modal-btns { display: flex; gap: 12px; }
+    .modal-btns button { flex: 1; padding: 12px; border-radius: 12px;
+      border: none; font-size: 15px; font-weight: 600; cursor: pointer; }
+    .btn-cancel  { background: var(--bg3); color: var(--text); }
+    .btn-confirm { background: var(--red); color: white; }
+    .btn-confirm.green { background: var(--green); color: #0f0f1a; }
+    .btn-confirm.blue  { background: var(--blue);  color: #0f0f1a; }
+
+    /* Toast */
+    .toast { position: fixed; top: max(70px, calc(env(safe-area-inset-top) + 70px));
+      left: 50%; transform: translateX(-50%) translateY(-20px); background: var(--bg3);
+      color: var(--text); padding: 10px 20px; border-radius: 20px; font-size: 14px;
+      z-index: 200; opacity: 0; transition: all .3s; white-space: nowrap;
+      border: 1px solid var(--bg3); pointer-events: none; }
+    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+    /* Setup */
+    .setup-field { margin-bottom: 16px; }
+    .setup-field label { display: block; font-size: 13px; color: var(--muted);
+      margin-bottom: 6px; }
+    .setup-field input { width: 100%; background: var(--bg3); border: 1px solid var(--bg3);
+      border-radius: 10px; padding: 12px; color: var(--text); font-size: 14px;
+      font-family: monospace; }
+    .setup-field input:focus { outline: none; border-color: var(--blue); }
+    .setup-field .hint { font-size: 11px; color: var(--muted); margin-top: 4px; }
+    .btn-save { width: 100%; padding: 14px; background: var(--blue); color: #0f0f1a;
+      border: none; border-radius: 12px; font-size: 15px; font-weight: 700;
+      cursor: pointer; margin-top: 8px; }
+    .status-ok  { color: var(--green); font-size: 13px; }
+    .status-err { color: var(--red);   font-size: 13px; }
+
+    /* Stockage */
+    .storage-bar { background: var(--bg3); border-radius: 4px; height: 8px;
+      margin: 8px 0 4px; overflow: hidden; }
+    .storage-bar-fill { height: 100%; border-radius: 4px;
+      background: linear-gradient(90deg, var(--blue), var(--green)); transition: width .5s; }
+
+    /* Misc */
     .section-title { font-size: 13px; font-weight: 600; color: var(--muted);
       text-transform: uppercase; letter-spacing: .06em; margin: 20px 0 10px; }
-
-    /* Alert */
     .alert { background: rgba(238,90,36,.12); border: 1px solid rgba(238,90,36,.3);
       border-radius: var(--radius); padding: 12px 16px; margin-bottom: 12px;
       font-size: 13px; color: var(--orange); }
+    .badge { display: inline-block; padding: 2px 8px; border-radius: 20px;
+      font-size: 11px; font-weight: 600; }
+    .badge-projet { background: rgba(0,180,216,.15); color: var(--blue); margin-left: 6px; }
 
-    /* Loading */
     .loading { display: flex; flex-direction: column; align-items: center;
       justify-content: center; height: 200px; gap: 16px; color: var(--muted); }
     .spinner { width: 36px; height: 36px; border: 3px solid var(--bg3);
       border-top-color: var(--blue); border-radius: 50%; animation: spin .8s linear infinite; }
-    @keyframes spin { to { transform: rotate(360deg); } }
-
-    /* Écran vide */
     .empty { text-align: center; padding: 48px 20px; color: var(--muted); }
     .empty .emoji { font-size: 48px; margin-bottom: 16px; }
-
-    /* Tabs */
     .page { display: none; }
     .page.active { display: block; }
+
+    @keyframes spin  { to { transform: rotate(360deg); } }
+    @keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:.4; } }
   </style>
 </head>
 <body>
@@ -137,29 +186,21 @@
       <h1>☁️ Scaleway Monitor</h1>
       <div class="freshness" id="freshness">Chargement…</div>
     </div>
-    <button class="refresh-btn" onclick="loadData()" title="Actualiser">⟳</button>
+    <button class="refresh-btn" id="refreshBtn" onclick="loadData()" title="Actualiser">⟳</button>
   </div>
 
   <div class="content">
-    <!-- Dashboard -->
     <div class="page active" id="page-dashboard">
-      <div id="dashboard-content">
-        <div class="loading"><div class="spinner"></div><span>Chargement…</span></div>
-      </div>
+      <div id="dashboard-content"><div class="loading"><div class="spinner"></div><span>Chargement…</span></div></div>
     </div>
-
-    <!-- Instances -->
     <div class="page" id="page-instances">
-      <div id="instances-content">
-        <div class="loading"><div class="spinner"></div><span>Chargement…</span></div>
-      </div>
+      <div id="instances-content"><div class="loading"><div class="spinner"></div><span>Chargement…</span></div></div>
     </div>
-
-    <!-- Stockage -->
     <div class="page" id="page-storage">
-      <div id="storage-content">
-        <div class="loading"><div class="spinner"></div><span>Chargement…</span></div>
-      </div>
+      <div id="storage-content"><div class="loading"><div class="spinner"></div><span>Chargement…</span></div></div>
+    </div>
+    <div class="page" id="page-setup">
+      <div id="setup-content"></div>
     </div>
   </div>
 
@@ -173,173 +214,384 @@
     <button class="nav-btn" data-tab="storage" onclick="switchTab('storage')">
       <span class="icon">💾</span>Stockage
     </button>
+    <button class="nav-btn" data-tab="setup" onclick="switchTab('setup')">
+      <span class="icon">⚙️</span>Config
+    </button>
   </nav>
 </div>
 
+<!-- Modale confirmation -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal">
+    <h3 id="modalTitle">Confirmer</h3>
+    <p id="modalDesc"></p>
+    <div class="modal-btns">
+      <button class="btn-cancel" onclick="closeModal()">Annuler</button>
+      <button class="btn-confirm" id="modalConfirm">Confirmer</button>
+    </div>
+  </div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
 <script>
-const BASE = location.hostname === 'localhost' ? '' : '/scaleway-monitor';
+const BASE  = location.hostname === 'localhost' ? '' : '/scaleway-monitor';
+const REPO  = 'jedeth/scaleway-monitor';
+const GH_API = 'https://api.github.com';
 let data = null;
 
-// ── Navigation ──────────────────────────────────────────────────────────
+// ── Storage config ────────────────────────────────────────────────────────
+const cfg = {
+  get token() { return localStorage.getItem('gh_token') || ''; },
+  set token(v) { localStorage.setItem('gh_token', v); },
+};
+
+// ── Navigation ────────────────────────────────────────────────────────────
 function switchTab(tab) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
   document.getElementById('page-' + tab).classList.add('active');
   document.querySelector(`[data-tab="${tab}"]`).classList.add('active');
+  if (tab === 'setup') renderSetup();
 }
 
-// ── Chargement données ──────────────────────────────────────────────────
+// ── Toast ─────────────────────────────────────────────────────────────────
+function toast(msg, duration = 3000) {
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.classList.add('show');
+  setTimeout(() => el.classList.remove('show'), duration);
+}
+
+// ── Modale ────────────────────────────────────────────────────────────────
+let _modalCb = null;
+function showModal(title, desc, confirmLabel, confirmClass, cb) {
+  document.getElementById('modalTitle').textContent = title;
+  document.getElementById('modalDesc').textContent = desc;
+  const btn = document.getElementById('modalConfirm');
+  btn.textContent = confirmLabel;
+  btn.className = 'btn-confirm ' + (confirmClass || '');
+  _modalCb = cb;
+  document.getElementById('modalOverlay').classList.add('show');
+}
+function closeModal() {
+  document.getElementById('modalOverlay').classList.remove('show');
+  _modalCb = null;
+}
+document.getElementById('modalConfirm').onclick = () => { closeModal(); _modalCb && _modalCb(); };
+document.getElementById('modalOverlay').addEventListener('click', e => {
+  if (e.target === document.getElementById('modalOverlay')) closeModal();
+});
+
+// ── Chargement données ────────────────────────────────────────────────────
 async function loadData() {
+  const btn = document.getElementById('refreshBtn');
+  btn.classList.add('spinning');
   try {
     const r = await fetch(`${BASE}/data/scaleway.json?t=${Date.now()}`);
     if (!r.ok) throw new Error(r.status);
     data = await r.json();
     renderAll();
   } catch(e) {
-    showError();
+    ['dashboard-content','instances-content','storage-content'].forEach(id => {
+      document.getElementById(id).innerHTML =
+        `<div class="empty"><div class="emoji">⚠️</div><div>Données indisponibles</div>
+        <div style="font-size:13px;margin-top:8px;color:var(--muted)">Les données sont mises à jour toutes les heures.</div></div>`;
+    });
+  } finally {
+    btn.classList.remove('spinning');
   }
 }
 
-function showError() {
-  const msg = `<div class="empty"><div class="emoji">⚠️</div>
-    <div>Données indisponibles</div>
-    <div style="font-size:13px;margin-top:8px;color:var(--muted)">Le cron GitHub Actions met à jour les données toutes les heures.</div></div>`;
-  ['dashboard-content','instances-content','storage-content'].forEach(id => {
-    document.getElementById(id).innerHTML = msg;
-  });
+// ── Actions instances ─────────────────────────────────────────────────────
+const ACTION_LABELS = {
+  poweroff: { label: '⏻ Éteindre',    class: 'btn-stop',   confirm: 'btn-confirm',       confirmLabel: '⏻ Éteindre', title: 'Éteindre l\'instance' },
+  poweron:  { label: '▶ Démarrer',    class: 'btn-start',  confirm: 'btn-confirm green',  confirmLabel: '▶ Démarrer',  title: 'Démarrer l\'instance' },
+  reboot:   { label: '↺ Redémarrer',  class: 'btn-reboot', confirm: 'btn-confirm blue',   confirmLabel: '↺ Redémarrer', title: 'Redémarrer l\'instance' },
+};
+
+async function triggerAction(btnEl, action, instanceId, instanceNom, zone) {
+  if (!cfg.token) {
+    toast('⚙️ Configure ton token GitHub dans l\'onglet Config');
+    switchTab('setup');
+    return;
+  }
+
+  const info = ACTION_LABELS[action];
+  showModal(
+    info.title,
+    `Instance : ${instanceNom} (${zone})\nCette action sera exécutée via GitHub Actions (~30 secondes).`,
+    info.confirmLabel,
+    info.confirm.replace('btn-confirm ', ''),
+    async () => {
+      btnEl.classList.add('loading');
+      btnEl.disabled = true;
+      toast('⏳ Action envoyée à GitHub Actions…', 5000);
+
+      try {
+        const r = await fetch(
+          `${GH_API}/repos/${REPO}/actions/workflows/action-instance.yml/dispatches`,
+          {
+            method: 'POST',
+            headers: {
+              'Authorization': `token ${cfg.token}`,
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              ref: 'main',
+              inputs: { action, instance_id: instanceId, zone },
+            }),
+          }
+        );
+        if (r.status === 204) {
+          toast('✅ Action lancée — données actualisées dans ~1 min', 5000);
+          // Recharger les données après 90 secondes
+          setTimeout(loadData, 90000);
+        } else if (r.status === 401) {
+          toast('❌ Token GitHub invalide — vérifie la Config');
+          switchTab('setup');
+        } else {
+          toast(`❌ Erreur HTTP ${r.status}`);
+        }
+      } catch(e) {
+        toast('❌ Erreur réseau');
+      } finally {
+        btnEl.classList.remove('loading');
+        btnEl.disabled = false;
+      }
+    }
+  );
 }
 
-// ── Helpers ─────────────────────────────────────────────────────────────
+// ── Helpers ───────────────────────────────────────────────────────────────
 function eur(v) { return v.toFixed(2) + ' €'; }
 function ago(iso) {
   const diff = Math.floor((Date.now() - new Date(iso)) / 60000);
   if (diff < 2) return 'à l\'instant';
   if (diff < 60) return `il y a ${diff} min`;
   const h = Math.floor(diff / 60);
-  return `il y a ${h}h${diff % 60 ? (diff%60)+'min' : ''}`;
+  return `il y a ${h}h${diff%60 ? diff%60+'min' : ''}`;
+}
+function allInstances() {
+  if (!data) return [];
+  return Object.values(data.projets).flatMap(p => p.instances);
+}
+function allVolumes()   { return Object.values(data.projets).flatMap(p => p.volumes); }
+function allSnapshots() { return Object.values(data.projets).flatMap(p => p.snapshots); }
+function allIPs()       { return Object.values(data.projets).flatMap(p => p.ips_flexibles); }
+
+// ── Instance item ─────────────────────────────────────────────────────────
+function instanceItem(inst, projetNom) {
+  const running  = inst.etat === 'running';
+  const stopped  = inst.etat === 'stopped';
+  const transit  = !running && !stopped;
+  const dotClass = running ? 'running' : (stopped ? 'stopped' : 'starting');
+
+  const costHtml = running
+    ? `<div class="main val-orange">${(inst.tarif_heure||0).toFixed(3)} €/h</div><div class="sub">en cours</div>`
+    : `<div class="main" style="color:var(--muted)">arrêtée</div><div class="sub">0 €/h</div>`;
+
+  const btns = transit ? `<div style="font-size:13px;color:var(--orange);padding-top:10px">⏳ Transition en cours…</div>` : `
+    <div class="item-actions">
+      ${running ? `
+        <button class="btn-action btn-stop"   onclick="triggerAction(this,'poweroff','${inst.id}','${inst.nom}','${inst.zone}')">
+          <span class="btn-spinner"></span><span class="btn-label">⏻ Éteindre</span>
+        </button>
+        <button class="btn-action btn-reboot" onclick="triggerAction(this,'reboot','${inst.id}','${inst.nom}','${inst.zone}')">
+          <span class="btn-spinner"></span><span class="btn-label">↺ Redémarrer</span>
+        </button>` : `
+        <button class="btn-action btn-start"  onclick="triggerAction(this,'poweron','${inst.id}','${inst.nom}','${inst.zone}')">
+          <span class="btn-spinner"></span><span class="btn-label">▶ Démarrer</span>
+        </button>`}
+    </div>`;
+
+  return `
+  <div class="item">
+    <div class="item-top">
+      <div class="item-dot ${dotClass}"></div>
+      <div class="item-info">
+        <div class="item-name">${inst.nom}<span class="badge badge-projet">${projetNom}</span></div>
+        <div class="item-type">${inst.type} · ${inst.zone}</div>
+        ${inst.ip ? `<div class="item-type" style="color:var(--blue);font-size:11px">${inst.ip}</div>` : ''}
+      </div>
+      <div class="item-cost">${costHtml}</div>
+    </div>
+    ${btns}
+  </div>`;
 }
 
-// ── Render Dashboard ─────────────────────────────────────────────────────
+// ── Render Dashboard ──────────────────────────────────────────────────────
 function renderDashboard() {
-  const d = data;
-  const running = d.instances.filter(i => i.etat === 'running');
-  const coutHoraire = running.reduce((s, i) => s + (i.tarif_heure || 0), 0);
-  const jours = new Date().getDate();
-  const projection = jours > 0 ? (d.cout_mois / jours) * 30 : 0;
+  const instances = allInstances();
+  const running   = instances.filter(i => i.etat === 'running');
+  const coutH     = running.reduce((s,i) => s + (i.tarif_heure||0), 0);
+  const jours     = new Date().getDate();
+  const proj      = jours > 0 ? (data.cout_mois / jours) * 30 : 0;
 
   let alerts = '';
-  if (running.length > 0)
-    alerts += `<div class="alert">⚡ ${running.length} instance(s) en cours — ${coutHoraire.toFixed(3)} €/h</div>`;
-  if (d.stockage.cout_total > 5)
-    alerts += `<div class="alert">💾 Stockage permanent : ${eur(d.stockage.cout_total)}/mois</div>`;
-  const libres = d.volumes.filter(v => !v.serveur);
-  if (libres.length > 0)
-    alerts += `<div class="alert">📦 ${libres.length} volume(s) non attaché(s) facturé(s) inutilement</div>`;
+  if (running.length)
+    alerts += `<div class="alert">⚡ ${running.length} instance(s) en cours — ${coutH.toFixed(3)} €/h</div>`;
+  const ipsLibres = allIPs().filter(ip => !ip.attachee);
+  if (ipsLibres.length)
+    alerts += `<div class="alert">📍 ${ipsLibres.length} IP(s) non attachée(s) — ${eur(ipsLibres.reduce((s,ip)=>s+ip.cout_mois,0))}/mois facturés inutilement</div>`;
+  const volLibres = allVolumes().filter(v => !v.serveur);
+  if (volLibres.length)
+    alerts += `<div class="alert">📦 ${volLibres.length} volume(s) non attaché(s) — ${eur(volLibres.reduce((s,v)=>s+v.cout_mois,0))}/mois</div>`;
 
   document.getElementById('dashboard-content').innerHTML = `
     <div class="card">
       <div class="card-title">Coût du mois en cours</div>
-      <div class="card-value val-blue">${eur(d.cout_mois)}</div>
-      <div class="card-sub">Projection fin de mois : ~${eur(projection)}</div>
+      <div class="card-value val-blue">${eur(data.cout_mois)}</div>
+      <div class="card-sub">Projection fin de mois : ~${eur(proj)}</div>
     </div>
-
     <div class="row">
       <div class="card">
         <div class="card-title">Instances</div>
-        <div class="card-value val-${running.length > 0 ? 'orange' : 'green'}">${d.instances.length}</div>
+        <div class="card-value val-${running.length ? 'orange' : 'green'}">${instances.length}</div>
         <div class="card-sub">${running.length} en cours</div>
       </div>
       <div class="card">
         <div class="card-title">Stockage</div>
-        <div class="card-value val-blue">${eur(d.stockage.cout_total)}<span style="font-size:16px">/mois</span></div>
-        <div class="card-sub">${(d.stockage.volumes_go + d.stockage.snaps_go + d.stockage.images_go).toFixed(0)} Go total</div>
+        <div class="card-value val-blue">${eur(Object.values(data.projets).reduce((s,p)=>s+p.stockage.cout_total,0))}<span style="font-size:16px">/mois</span></div>
+        <div class="card-sub">${Object.values(data.projets).reduce((s,p)=>s+p.stockage.volumes_go+p.stockage.snaps_go,0).toFixed(0)} Go total</div>
       </div>
     </div>
-
-    ${alerts || '<div class="card"><div class="card-title">Alertes</div><div style="color:var(--green);font-size:14px;margin-top:4px">✅ Aucune alerte</div></div>'}
-
-    ${running.length > 0 ? `
-    <div class="section-title">En cours</div>
-    ${running.map(i => instanceItem(i)).join('')}` : ''}
+    ${alerts || '<div class="card"><div class="card-title">Alertes</div><div style="color:var(--green);margin-top:4px">✅ Aucune alerte</div></div>'}
+    ${running.length ? `<div class="section-title">En cours</div>${running.map(i => {
+      const proj = Object.entries(data.projets).find(([,p]) => p.instances.find(x=>x.id===i.id))?.[0] || '';
+      return instanceItem(i, proj);
+    }).join('')}` : ''}
   `;
 }
 
-// ── Render Instances ─────────────────────────────────────────────────────
+// ── Render Instances ──────────────────────────────────────────────────────
 function renderInstances() {
-  const sorted = [...data.instances].sort((a,b) => (b.etat==='running')-(a.etat==='running'));
-  document.getElementById('instances-content').innerHTML = sorted.length
-    ? sorted.map(instanceItem).join('')
-    : '<div class="empty"><div class="emoji">🖥️</div><div>Aucune instance</div></div>';
+  const lines = [];
+  for (const [nom, p] of Object.entries(data.projets)) {
+    if (!p.instances.length) continue;
+    lines.push(`<div class="section-title">${nom}</div>`);
+    const sorted = [...p.instances].sort((a,b) => (b.etat==='running')-(a.etat==='running'));
+    lines.push(...sorted.map(i => instanceItem(i, nom)));
+  }
+  if (!lines.length) lines.push('<div class="empty"><div class="emoji">🖥️</div><div>Aucune instance</div></div>');
+  document.getElementById('instances-content').innerHTML = lines.join('');
 }
 
-function instanceItem(i) {
-  const running = i.etat === 'running';
-  const costLabel = running
-    ? `<div class="main val-orange">${(i.tarif_heure||0).toFixed(3)} €/h</div><div class="sub">en cours</div>`
-    : `<div class="main val-muted" style="color:var(--muted)">arrêtée</div><div class="sub">0 €/h</div>`;
-  return `
-  <div class="item">
-    <div class="item-dot ${i.etat === 'running' ? 'running' : 'stopped'}"></div>
-    <div class="item-info">
-      <div class="item-name">${i.nom}</div>
-      <div class="item-type">${i.type} · ${i.zone || ''}</div>
-      ${i.ip ? `<div class="item-type" style="color:var(--blue);font-size:11px">${i.ip}</div>` : ''}
-    </div>
-    <div class="item-cost">${costLabel}</div>
-  </div>`;
-}
-
-// ── Render Stockage ──────────────────────────────────────────────────────
+// ── Render Storage ────────────────────────────────────────────────────────
 function renderStorage() {
-  const s = data.stockage;
-  const total_go = s.volumes_go + s.snaps_go + s.images_go;
-  const max_go = Math.max(total_go, 1);
+  const lines = [];
+  for (const [nom, p] of Object.entries(data.projets)) {
+    const s = p.stockage;
+    const ips = p.ips_flexibles;
+    const ipsLibres = ips.filter(ip => !ip.attachee);
+    if (!s.volumes_go && !s.snaps_go && !ips.length) {
+      lines.push(`<div class="section-title">${nom}</div>
+        <div class="card" style="color:var(--muted);font-size:14px">Aucun stockage</div>`);
+      continue;
+    }
+    lines.push(`<div class="section-title">${nom}</div>`);
+    if (s.volumes_go || s.snaps_go) {
+      lines.push(`<div class="card">
+        <div class="card-title">Stockage permanent</div>
+        <div class="card-value val-orange">${eur(s.cout_total)}<span style="font-size:16px">/mois</span></div>
+        <div class="storage-bar"><div class="storage-bar-fill" style="width:100%"></div></div>
+        <div style="display:flex;gap:16px;font-size:12px;color:var(--muted)">
+          <span>Volumes ${s.volumes_go} Go</span>
+          <span>Snapshots ${s.snaps_go} Go</span>
+        </div></div>`);
+    }
+    if (ips.length) {
+      lines.push(`<div class="card">
+        <div class="card-title">IPs flexibles (${ips.length})</div>
+        ${ips.map(ip => `<div style="display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid var(--bg3)">
+          <div>
+            <div style="font-size:14px;font-weight:600">${ip.adresse || 'N/A'}</div>
+            <div style="font-size:11px;color:var(--muted)">${ip.zone} · ${ip.attachee ? '📌 '+ip.serveur : '<span style="color:var(--red)">LIBRE</span>'}</div>
+          </div>
+          <div style="text-align:right;font-size:13px;color:${ip.attachee ? 'var(--muted)' : 'var(--red)'}">
+            ${ip.attachee ? '0 €' : eur(ip.cout_mois)+'/mois'}
+          </div>
+        </div>`).join('')}
+        ${ipsLibres.length ? `<div style="margin-top:10px;font-size:12px;color:var(--orange)">⚠️ ${ipsLibres.length} IP(s) non attachée(s) = ${eur(ipsLibres.reduce((s,ip)=>s+ip.cout_mois,0))}/mois facturés inutilement</div>` : ''}
+      </div>`);
+    }
+    p.volumes.forEach(v => {
+      lines.push(`<div class="item"><div class="item-top">
+        <div style="font-size:20px">💿</div>
+        <div class="item-info">
+          <div class="item-name">${v.nom}</div>
+          <div class="item-type">${v.taille_go} Go · ${v.zone}${v.serveur ? ' · '+v.serveur : ' · <span style="color:var(--red)">non attaché</span>'}</div>
+        </div>
+        <div class="item-cost"><div class="main val-orange">${eur(v.cout_mois)}</div><div class="sub">/mois</div></div>
+      </div></div>`);
+    });
+    p.snapshots.forEach(s => {
+      lines.push(`<div class="item"><div class="item-top">
+        <div style="font-size:20px">📸</div>
+        <div class="item-info">
+          <div class="item-name">${s.nom}</div>
+          <div class="item-type">${s.taille_go} Go · ${s.zone || ''} · créé le ${s.date}</div>
+        </div>
+        <div class="item-cost"><div class="main val-orange">${eur(s.cout_mois)}</div><div class="sub">/mois</div></div>
+      </div></div>`);
+    });
+  }
+  document.getElementById('storage-content').innerHTML = lines.join('');
+}
 
-  const snap_html = data.snapshots.map(sn => `
-  <div class="item">
-    <div style="font-size:20px">📸</div>
-    <div class="item-info">
-      <div class="item-name">${sn.nom}</div>
-      <div class="item-type">${sn.taille_go} Go · créé le ${sn.date}</div>
-    </div>
-    <div class="item-cost">
-      <div class="main val-orange">${eur(sn.cout_mois)}</div>
-      <div class="sub">/mois</div>
-    </div>
-  </div>`).join('');
-
-  const vol_html = data.volumes.map(v => `
-  <div class="item">
-    <div style="font-size:20px">💿</div>
-    <div class="item-info">
-      <div class="item-name">${v.nom}</div>
-      <div class="item-type">${v.taille_go} Go${v.serveur ? ` · ${v.serveur}` : ' · <span style="color:var(--red)">non attaché</span>'}</div>
-    </div>
-    <div class="item-cost">
-      <div class="main val-orange">${eur(v.cout_mois)}</div>
-      <div class="sub">/mois</div>
-    </div>
-  </div>`).join('');
-
-  document.getElementById('storage-content').innerHTML = `
-    <div class="card">
-      <div class="card-title">Total stockage permanent</div>
-      <div class="card-value val-orange">${eur(s.cout_total)}<span style="font-size:16px">/mois</span></div>
-      <div class="storage-bar"><div class="storage-bar-fill" style="width:100%"></div></div>
-      <div style="display:flex;gap:16px;font-size:12px;color:var(--muted)">
-        <span>Volumes ${s.volumes_go} Go</span>
-        <span>Snapshots ${s.snaps_go} Go</span>
-        <span>Images ${s.images_go} Go</span>
+// ── Render Setup ──────────────────────────────────────────────────────────
+function renderSetup() {
+  document.getElementById('setup-content').innerHTML = `
+    <div class="card" style="margin-bottom:20px">
+      <div class="card-title">Actions sur les instances</div>
+      <div style="font-size:13px;color:var(--muted);line-height:1.6">
+        Les boutons Éteindre / Démarrer / Redémarrer déclenchent un workflow GitHub Actions.
+        Un token GitHub avec la permission <code style="background:var(--bg3);padding:1px 5px;border-radius:4px">workflow</code> est requis.
       </div>
     </div>
-
-    ${data.volumes.length ? `<div class="section-title">Volumes (${data.volumes.length})</div>${vol_html}` : ''}
-    ${data.snapshots.length ? `<div class="section-title">Snapshots (${data.snapshots.length})</div>${snap_html}` : ''}
-    ${!data.volumes.length && !data.snapshots.length ? '<div class="empty"><div class="emoji">💾</div><div>Aucune donnée de stockage</div></div>' : ''}
+    <div class="setup-field">
+      <label>Token GitHub Personnel (PAT)</label>
+      <input type="password" id="tokenInput" placeholder="ghp_xxxxxxxxxxxx" value="${cfg.token}">
+      <div class="hint">Settings → Developer settings → Personal access tokens → scope : <b>workflow</b></div>
+    </div>
+    <div id="tokenStatus" style="margin-bottom:12px"></div>
+    <button class="btn-save" onclick="saveToken()">💾 Enregistrer</button>
+    ${cfg.token ? `<button style="width:100%;padding:12px;background:none;border:1px solid var(--bg3);border-radius:12px;color:var(--muted);font-size:14px;cursor:pointer;margin-top:10px" onclick="testToken()">🔍 Tester le token</button>` : ''}
+    <div style="margin-top:24px;padding-top:16px;border-top:1px solid var(--bg3);font-size:12px;color:var(--muted)">
+      <div>Repo surveillé : <b>jedeth/scaleway-monitor</b></div>
+      <div style="margin-top:4px">Données fraîches : toutes les heures (6h–22h)</div>
+    </div>
   `;
 }
 
-// ── Render All ───────────────────────────────────────────────────────────
+function saveToken() {
+  const val = document.getElementById('tokenInput').value.trim();
+  cfg.token = val;
+  document.getElementById('tokenStatus').innerHTML =
+    val ? '<div class="status-ok">✅ Token enregistré localement</div>'
+        : '<div class="status-err">Token supprimé</div>';
+  setTimeout(renderSetup, 800);
+}
+
+async function testToken() {
+  const status = document.getElementById('tokenStatus');
+  status.innerHTML = '<span style="color:var(--muted)">Test en cours…</span>';
+  try {
+    const r = await fetch(`${GH_API}/repos/${REPO}`, {
+      headers: { 'Authorization': `token ${cfg.token}` }
+    });
+    if (r.ok) {
+      status.innerHTML = '<div class="status-ok">✅ Token valide — accès repo confirmé</div>';
+    } else {
+      status.innerHTML = `<div class="status-err">❌ Token invalide (HTTP ${r.status})</div>`;
+    }
+  } catch(e) {
+    status.innerHTML = '<div class="status-err">❌ Erreur réseau</div>';
+  }
+}
+
+// ── Render All ────────────────────────────────────────────────────────────
 function renderAll() {
   if (!data) return;
   document.getElementById('freshness').textContent = `Mis à jour ${ago(data.mis_a_jour)}`;
@@ -348,7 +600,7 @@ function renderAll() {
   renderStorage();
 }
 
-// ── PWA Service Worker ───────────────────────────────────────────────────
+// ── PWA ───────────────────────────────────────────────────────────────────
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register(`${BASE}/sw.js`);
 }

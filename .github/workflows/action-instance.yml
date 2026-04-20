@@ -1,0 +1,55 @@
+name: Action instance Scaleway
+
+on:
+  workflow_dispatch:
+    inputs:
+      action:
+        description: "Action : poweroff | poweron | reboot"
+        required: true
+      instance_id:
+        description: "ID Scaleway de l'instance"
+        required: true
+      zone:
+        description: "Zone Scaleway"
+        required: true
+        default: "fr-par-1"
+
+permissions:
+  contents: write
+
+jobs:
+  action:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Exécuter l'action sur l'instance
+        env:
+          SCALEWAY_SECRET_KEY: ${{ secrets.SCALEWAY_SECRET_KEY }}
+          SCW_ACTION:      ${{ inputs.action }}
+          SCW_INSTANCE_ID: ${{ inputs.instance_id }}
+          SCW_ZONE:        ${{ inputs.zone }}
+        run: python scripts/action_instance.py
+
+      - name: Rafraîchir les données après action
+        env:
+          SCALEWAY_SECRET_KEY:   ${{ secrets.SCALEWAY_SECRET_KEY }}
+          SCALEWAY_PROJECT_ID:   ${{ secrets.SCALEWAY_PROJECT_ID }}
+          SCALEWAY_DEFAULT_ZONE: ${{ secrets.SCALEWAY_DEFAULT_ZONE }}
+        run: |
+          mkdir -p data
+          python scripts/fetch_data.py > data/scaleway.json
+
+      - name: Commit données mises à jour
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/scaleway.json
+          git diff --staged --quiet || git commit -m "data: post-action $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          git push
