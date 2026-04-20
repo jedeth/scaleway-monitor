@@ -1,0 +1,30 @@
+name: Rapport Scaleway quotidien → Telegram
+
+on:
+  schedule:
+    - cron: "0 7 * * *"   # 8h heure Paris (UTC+1 hiver / UTC+2 été)
+  workflow_dispatch:        # déclenchement manuel depuis GitHub
+
+jobs:
+  rapport:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Envoyer le rapport Scaleway
+        env:
+          SCALEWAY_SECRET_KEY:  ${{ secrets.SCALEWAY_SECRET_KEY }}
+          SCALEWAY_PROJECT_ID:  ${{ secrets.SCALEWAY_PROJECT_ID }}
+          SCALEWAY_DEFAULT_ZONE: ${{ secrets.SCALEWAY_DEFAULT_ZONE }}
+          TELEGRAM_BOT_TOKEN:   ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID:     ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          python rapport_daily.py
