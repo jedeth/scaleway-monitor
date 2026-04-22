@@ -1,6 +1,6 @@
 {
-  "mis_a_jour": "2026-04-22T15:16:00.519425+00:00",
-  "cout_mois": 65.78,
+  "mis_a_jour": "2026-04-22T17:03:45.755068+00:00",
+  "cout_mois": 65.96,
   "projets": {
     "etabl-ia.fr": {
       "id": "3a6a9f92-bf5b-4ee9-9c8a-9ee7f48b18bd",
@@ -8,6 +8,24 @@
         "fr-par-1"
       ],
       "instances": [
+        {
+          "id": "18d96f46-d50a-499d-b033-e7057ee71515",
+          "nom": "poste-jojo-merou-b58814a0",
+          "type": "DEV1-M",
+          "etat": "running",
+          "ip": "51.15.196.253",
+          "zone": "fr-par-1",
+          "tarif_heure": 0.024
+        },
+        {
+          "id": "cdfed9c8-9124-4361-8139-bb0286b98541",
+          "nom": "poste-alice-martin-b58814a0",
+          "type": "DEV1-M",
+          "etat": "running",
+          "ip": "212.47.240.181",
+          "zone": "fr-par-1",
+          "tarif_heure": 0.024
+        },
         {
           "id": "112dde72-95ff-422a-831b-2dcaf32d92fa",
           "nom": "scw-gracious-wilbur",
@@ -79,17 +97,7 @@
         "fr-par-1",
         "fr-par-2"
       ],
-      "instances": [
-        {
-          "id": "ff13a758-9a31-40e1-8aab-6197e16bfdba",
-          "nom": "golden-image-hackathon",
-          "type": "DEV1-M",
-          "etat": "running",
-          "ip": "163.172.183.241",
-          "zone": "fr-par-1",
-          "tarif_heure": 0.024
-        }
-      ],
+      "instances": [],
       "volumes": [
         {
           "id": "794b077a-4511-4003-859a-9c9f95d9635d",
@@ -102,14 +110,6 @@
       ],
       "snapshots": [],
       "ips_flexibles": [
-        {
-          "id": "3f1a3065-902e-42ac-a681-a13014686d3e",
-          "adresse": "163.172.183.241",
-          "zone": "fr-par-1",
-          "attachee": true,
-          "serveur": "golden-image-hackathon",
-          "cout_mois": 0
-        },
         {
           "id": "f8e7b228-87e6-4f39-a7c6-a1443aa93ebc",
           "adresse": null,
