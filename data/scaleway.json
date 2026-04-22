@@ -1,6 +1,6 @@
 {
-  "mis_a_jour": "2026-04-22T17:03:45.755068+00:00",
-  "cout_mois": 65.96,
+  "mis_a_jour": "2026-04-22T19:16:21.724787+00:00",
+  "cout_mois": 66.27,
   "projets": {
     "etabl-ia.fr": {
       "id": "3a6a9f92-bf5b-4ee9-9c8a-9ee7f48b18bd",
@@ -9,28 +9,10 @@
       ],
       "instances": [
         {
-          "id": "18d96f46-d50a-499d-b033-e7057ee71515",
-          "nom": "poste-jojo-merou-b58814a0",
-          "type": "DEV1-M",
-          "etat": "running",
-          "ip": "51.15.196.253",
-          "zone": "fr-par-1",
-          "tarif_heure": 0.024
-        },
-        {
-          "id": "cdfed9c8-9124-4361-8139-bb0286b98541",
-          "nom": "poste-alice-martin-b58814a0",
-          "type": "DEV1-M",
-          "etat": "running",
-          "ip": "212.47.240.181",
-          "zone": "fr-par-1",
-          "tarif_heure": 0.024
-        },
-        {
           "id": "112dde72-95ff-422a-831b-2dcaf32d92fa",
           "nom": "scw-gracious-wilbur",
           "type": "DEV1-L",
-          "etat": "running",
+          "etat": "stopped",
           "ip": "51.15.143.223",
           "zone": "fr-par-1",
           "tarif_heure": 0.048
