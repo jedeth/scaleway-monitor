@@ -1,6 +1,6 @@
 {
-  "mis_a_jour": "2026-04-22T13:44:32.403470+00:00",
-  "cout_mois": 65.62,
+  "mis_a_jour": "2026-04-22T15:16:00.519425+00:00",
+  "cout_mois": 65.78,
   "projets": {
     "etabl-ia.fr": {
       "id": "3a6a9f92-bf5b-4ee9-9c8a-9ee7f48b18bd",
@@ -79,7 +79,17 @@
         "fr-par-1",
         "fr-par-2"
       ],
-      "instances": [],
+      "instances": [
+        {
+          "id": "ff13a758-9a31-40e1-8aab-6197e16bfdba",
+          "nom": "golden-image-hackathon",
+          "type": "DEV1-M",
+          "etat": "running",
+          "ip": "163.172.183.241",
+          "zone": "fr-par-1",
+          "tarif_heure": 0.024
+        }
+      ],
       "volumes": [
         {
           "id": "794b077a-4511-4003-859a-9c9f95d9635d",
@@ -92,6 +102,14 @@
       ],
       "snapshots": [],
       "ips_flexibles": [
+        {
+          "id": "3f1a3065-902e-42ac-a681-a13014686d3e",
+          "adresse": "163.172.183.241",
+          "zone": "fr-par-1",
+          "attachee": true,
+          "serveur": "golden-image-hackathon",
+          "cout_mois": 0
+        },
         {
           "id": "f8e7b228-87e6-4f39-a7c6-a1443aa93ebc",
           "adresse": null,
@@ -118,6 +136,13 @@
         }
       ],
       "groupes_securite": [
+        {
+          "id": "87f1f0d2-742a-43ae-a4d7-2f47203684da",
+          "nom": "Default security group",
+          "zone": "fr-par-1",
+          "stateful": true,
+          "par_defaut": true
+        },
         {
           "id": "740e54fa-2be2-4df4-8223-f0275379ae45",
           "nom": "Default security group",
