@@ -1,6 +1,6 @@
 {
-  "mis_a_jour": "2026-04-30T10:56:28.111168+00:00",
-  "cout_mois": 76.84,
+  "mis_a_jour": "2026-04-30T12:17:39.028151+00:00",
+  "cout_mois": 76.99,
   "projets": {
     "etabl-ia.fr": {
       "id": "3a6a9f92-bf5b-4ee9-9c8a-9ee7f48b18bd",
@@ -87,7 +87,17 @@
         "fr-par-1",
         "fr-par-2"
       ],
-      "instances": [],
+      "instances": [
+        {
+          "id": "0d5e6169-95f2-4b7a-a33c-275480f55b49",
+          "nom": "scw-funny-johnson",
+          "type": "DEV1-M",
+          "etat": "running",
+          "ip": "51.159.128.85",
+          "zone": "fr-par-2",
+          "tarif_heure": 0.024
+        }
+      ],
       "volumes": [
         {
           "id": "794b077a-4511-4003-859a-9c9f95d9635d",
@@ -101,6 +111,14 @@
       "snapshots": [],
       "ips_flexibles": [
         {
+          "id": "4f785149-b7c8-45de-a117-43355c987f43",
+          "adresse": null,
+          "zone": "fr-par-2",
+          "attachee": true,
+          "serveur": "scw-funny-johnson",
+          "cout_mois": 0
+        },
+        {
           "id": "f8e7b228-87e6-4f39-a7c6-a1443aa93ebc",
           "adresse": null,
           "zone": "fr-par-2",
@@ -112,9 +130,9 @@
           "id": "6d0c208c-54c3-4d07-aee5-fa3121cef4b1",
           "adresse": "51.159.128.85",
           "zone": "fr-par-2",
-          "attachee": false,
-          "serveur": null,
-          "cout_mois": 1.44
+          "attachee": true,
+          "serveur": "scw-funny-johnson",
+          "cout_mois": 0
         },
         {
           "id": "8aef3f56-0801-485b-9c4d-03845c2880db",
@@ -147,7 +165,7 @@
         "images_go": 0.0,
         "cout_total": 0.8
       },
-      "cout_ips_libres": 4.32
+      "cout_ips_libres": 2.88
     }
   }
 }
