@@ -1,6 +1,6 @@
 {
-  "mis_a_jour": "2026-04-30T12:17:39.028151+00:00",
-  "cout_mois": 76.99,
+  "mis_a_jour": "2026-04-30T15:11:20.891739+00:00",
+  "cout_mois": 77.32,
   "projets": {
     "etabl-ia.fr": {
       "id": "3a6a9f92-bf5b-4ee9-9c8a-9ee7f48b18bd",
@@ -92,7 +92,7 @@
           "id": "0d5e6169-95f2-4b7a-a33c-275480f55b49",
           "nom": "scw-funny-johnson",
           "type": "DEV1-M",
-          "etat": "running",
+          "etat": "stopped",
           "ip": "51.159.128.85",
           "zone": "fr-par-2",
           "tarif_heure": 0.024
