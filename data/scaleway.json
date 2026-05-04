@@ -1,6 +1,6 @@
 {
-  "mis_a_jour": "2026-05-04T18:15:35.238477+00:00",
-  "cout_mois": 5.71,
+  "mis_a_jour": "2026-05-04T20:16:33.785759+00:00",
+  "cout_mois": 5.99,
   "projets": {
     "etabl-ia.fr": {
       "id": "3a6a9f92-bf5b-4ee9-9c8a-9ee7f48b18bd",
@@ -9,10 +9,19 @@
       ],
       "instances": [
         {
+          "id": "6bc1ec94-f173-4b9c-920b-9c641c851018",
+          "nom": "scw-zealous-molina",
+          "type": "DEV1-L",
+          "etat": "stopped",
+          "ip": "212.47.240.181",
+          "zone": "fr-par-1",
+          "tarif_heure": 0.048
+        },
+        {
           "id": "112dde72-95ff-422a-831b-2dcaf32d92fa",
           "nom": "scw-gracious-wilbur",
           "type": "DEV1-L",
-          "etat": "running",
+          "etat": "stopped",
           "ip": "51.15.143.223",
           "zone": "fr-par-1",
           "tarif_heure": 0.048
@@ -48,11 +57,27 @@
       ],
       "ips_flexibles": [
         {
+          "id": "87d818f2-ab66-4286-a6e2-464a38c7151b",
+          "adresse": null,
+          "zone": "fr-par-1",
+          "attachee": false,
+          "serveur": null,
+          "cout_mois": 1.44
+        },
+        {
           "id": "5559183e-8faf-4714-aac7-f1836d91c310",
           "adresse": null,
           "zone": "fr-par-1",
           "attachee": true,
           "serveur": "scw-gracious-wilbur",
+          "cout_mois": 0
+        },
+        {
+          "id": "233135b1-daed-4ace-82f1-1e74b17e5ed1",
+          "adresse": "212.47.240.181",
+          "zone": "fr-par-1",
+          "attachee": true,
+          "serveur": "scw-zealous-molina",
           "cout_mois": 0
         },
         {
@@ -79,7 +104,7 @@
         "images_go": 0.0,
         "cout_total": 4.8
       },
-      "cout_ips_libres": 0
+      "cout_ips_libres": 1.44
     },
     "TESTPROD": {
       "id": "3373abc8-dccd-4529-9dc7-cfd185632ac5",
