@@ -1,6 +1,6 @@
 {
-  "mis_a_jour": "2026-05-06T14:16:10.842144+00:00",
-  "cout_mois": 10.45,
+  "mis_a_jour": "2026-05-06T16:41:03.982445+00:00",
+  "cout_mois": 10.87,
   "projets": {
     "etabl-ia.fr": {
       "id": "3a6a9f92-bf5b-4ee9-9c8a-9ee7f48b18bd",
@@ -20,11 +20,11 @@
         {
           "id": "112dde72-95ff-422a-831b-2dcaf32d92fa",
           "nom": "scw-gracious-wilbur",
-          "type": "DEV1-L",
+          "type": "DEV1-XL",
           "etat": "running",
           "ip": "51.15.143.223",
           "zone": "fr-par-1",
-          "tarif_heure": 0.048
+          "tarif_heure": 0.072
         }
       ],
       "volumes": [
@@ -117,7 +117,7 @@
           "id": "0d5e6169-95f2-4b7a-a33c-275480f55b49",
           "nom": "scw-funny-johnson",
           "type": "DEV1-M",
-          "etat": "stopped",
+          "etat": "running",
           "ip": "51.159.128.85",
           "zone": "fr-par-2",
           "tarif_heure": 0.024
