@@ -1,6 +1,6 @@
 {
-  "mis_a_jour": "2026-05-05T22:56:54.794812+00:00",
-  "cout_mois": 8.79,
+  "mis_a_jour": "2026-05-06T11:08:43.617538+00:00",
+  "cout_mois": 9.97,
   "projets": {
     "etabl-ia.fr": {
       "id": "3a6a9f92-bf5b-4ee9-9c8a-9ee7f48b18bd",
@@ -12,7 +12,7 @@
           "id": "6bc1ec94-f173-4b9c-920b-9c641c851018",
           "nom": "scw-zealous-molina",
           "type": "DEV1-L",
-          "etat": "stopped",
+          "etat": "running",
           "ip": "212.47.240.181",
           "zone": "fr-par-1",
           "tarif_heure": 0.048
@@ -21,7 +21,7 @@
           "id": "112dde72-95ff-422a-831b-2dcaf32d92fa",
           "nom": "scw-gracious-wilbur",
           "type": "DEV1-L",
-          "etat": "stopped",
+          "etat": "running",
           "ip": "51.15.143.223",
           "zone": "fr-par-1",
           "tarif_heure": 0.048
