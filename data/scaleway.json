@@ -1,6 +1,6 @@
 {
-  "mis_a_jour": "2026-05-11T12:39:48.761958+00:00",
-  "cout_mois": 23.09,
+  "mis_a_jour": "2026-05-11T15:56:22.059203+00:00",
+  "cout_mois": 23.75,
   "projets": {
     "etabl-ia.fr": {
       "id": "3a6a9f92-bf5b-4ee9-9c8a-9ee7f48b18bd",
@@ -21,7 +21,7 @@
           "id": "112dde72-95ff-422a-831b-2dcaf32d92fa",
           "nom": "scw-gracious-wilbur",
           "type": "DEV1-XL",
-          "etat": "running",
+          "etat": "stopped",
           "ip": "51.15.143.223",
           "zone": "fr-par-1",
           "tarif_heure": 0.072
@@ -114,6 +114,15 @@
       ],
       "instances": [
         {
+          "id": "5822fa7d-4f32-42e8-9575-e3697773fc8b",
+          "nom": "vibe-codding-php",
+          "type": "DEV1-S",
+          "etat": "stopped",
+          "ip": "51.159.185.163",
+          "zone": "fr-par-2",
+          "tarif_heure": 0.012
+        },
+        {
           "id": "0d5e6169-95f2-4b7a-a33c-275480f55b49",
           "nom": "scw-funny-johnson",
           "type": "DEV1-M",
@@ -125,6 +134,14 @@
       ],
       "volumes": [
         {
+          "id": "556814f2-663f-4ab9-ad15-bae195bf227d",
+          "nom": "Ubuntu 22.04 Jammy Jellyfish",
+          "taille_go": 20.0,
+          "zone": "fr-par-2",
+          "serveur": "vibe-codding-php",
+          "cout_mois": 0.8
+        },
+        {
           "id": "794b077a-4511-4003-859a-9c9f95d9635d",
           "nom": "Ubuntu Jammy GPU OS 12 passthrough",
           "taille_go": 20.0,
@@ -133,7 +150,24 @@
           "cout_mois": 0.8
         }
       ],
-      "snapshots": [],
+      "snapshots": [
+        {
+          "id": "30a5d4d3-e7cd-499f-8e81-9a1d246c83e5",
+          "nom": "golden-image-hackaton-php-v3",
+          "taille_go": 20.0,
+          "zone": "fr-par-2",
+          "date": "2026-05-11",
+          "cout_mois": 0.8
+        },
+        {
+          "id": "a8519e95-f64e-4f35-95f4-f45ca92d5b7b",
+          "nom": "golden-image-hackaton-php-v2",
+          "taille_go": 20.0,
+          "zone": "fr-par-2",
+          "date": "2026-05-11",
+          "cout_mois": 0.8
+        }
+      ],
       "ips_flexibles": [
         {
           "id": "4f785149-b7c8-45de-a117-43355c987f43",
@@ -150,6 +184,14 @@
           "attachee": false,
           "serveur": null,
           "cout_mois": 1.44
+        },
+        {
+          "id": "7cb2ce29-c00c-4ff8-acae-c29e58462d15",
+          "adresse": "51.159.185.163",
+          "zone": "fr-par-2",
+          "attachee": true,
+          "serveur": "vibe-codding-php",
+          "cout_mois": 0
         },
         {
           "id": "6d0c208c-54c3-4d07-aee5-fa3121cef4b1",
@@ -185,10 +227,10 @@
         }
       ],
       "stockage": {
-        "volumes_go": 20.0,
-        "snaps_go": 0.0,
-        "images_go": 0.0,
-        "cout_total": 0.8
+        "volumes_go": 40.0,
+        "snaps_go": 40.0,
+        "images_go": 40.0,
+        "cout_total": 4.8
       },
       "cout_ips_libres": 2.88
     }
