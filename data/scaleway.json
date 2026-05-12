@@ -1,6 +1,6 @@
 {
-  "mis_a_jour": "2026-05-12T14:28:32.232706+00:00",
-  "cout_mois": 26.95,
+  "mis_a_jour": "2026-05-12T17:13:05.514565+00:00",
+  "cout_mois": 27.52,
   "projets": {
     "etabl-ia.fr": {
       "id": "3a6a9f92-bf5b-4ee9-9c8a-9ee7f48b18bd",
@@ -21,7 +21,7 @@
           "id": "112dde72-95ff-422a-831b-2dcaf32d92fa",
           "nom": "scw-gracious-wilbur",
           "type": "DEV1-XL",
-          "etat": "running",
+          "etat": "stopped",
           "ip": "51.15.143.223",
           "zone": "fr-par-1",
           "tarif_heure": 0.072
@@ -122,15 +122,6 @@
       ],
       "instances": [
         {
-          "id": "13fa3260-ccf7-4861-ab36-5a73850e91cd",
-          "nom": "glm51-downloader",
-          "type": "PLAY2-PICO",
-          "etat": "running",
-          "ip": "51.159.117.194",
-          "zone": "fr-par-2",
-          "tarif_heure": 0.003
-        },
-        {
           "id": "5822fa7d-4f32-42e8-9575-e3697773fc8b",
           "nom": "vibe-codding-php",
           "type": "DEV1-S",
@@ -225,14 +216,6 @@
           "attachee": false,
           "serveur": null,
           "cout_mois": 1.44
-        },
-        {
-          "id": "f9d72bf0-632b-41a6-93d8-527fed09ef78",
-          "adresse": "51.159.117.194",
-          "zone": "fr-par-2",
-          "attachee": true,
-          "serveur": "glm51-downloader",
-          "cout_mois": 0
         }
       ],
       "groupes_securite": [
