@@ -1,6 +1,6 @@
 {
-  "mis_a_jour": "2026-05-28T10:04:46.953523+00:00",
-  "cout_mois": 82.97,
+  "mis_a_jour": "2026-05-28T14:37:51.733020+00:00",
+  "cout_mois": 83.91,
   "projets": {
     "etabl-ia.fr": {
       "id": "3a6a9f92-bf5b-4ee9-9c8a-9ee7f48b18bd",
@@ -122,6 +122,24 @@
       ],
       "instances": [
         {
+          "id": "25077a1d-f4b0-4324-aa54-341f66ff7d67",
+          "nom": "poste-bob-856f25ce",
+          "type": "DEV1-S",
+          "etat": "running",
+          "ip": "51.159.182.116",
+          "zone": "fr-par-2",
+          "tarif_heure": 0.012
+        },
+        {
+          "id": "1ddfa5a9-5097-46fb-961b-99b1bb7a9e94",
+          "nom": "poste-olivier-755eb05d",
+          "type": "DEV1-M",
+          "etat": "running",
+          "ip": "51.159.136.213",
+          "zone": "fr-par-2",
+          "tarif_heure": 0.024
+        },
+        {
           "id": "5822fa7d-4f32-42e8-9575-e3697773fc8b",
           "nom": "vibe-codding-php",
           "type": "DEV1-S",
@@ -141,6 +159,14 @@
         }
       ],
       "volumes": [
+        {
+          "id": "6dc3e9da-c8cc-43dc-88fa-23770a57bd6c",
+          "nom": "golden-image-hackaton-php-v2",
+          "taille_go": 20.0,
+          "zone": "fr-par-2",
+          "serveur": "poste-bob-856f25ce",
+          "cout_mois": 0.8
+        },
         {
           "id": "556814f2-663f-4ab9-ad15-bae195bf227d",
           "nom": "Ubuntu 22.04 Jammy Jellyfish",
@@ -235,10 +261,10 @@
         }
       ],
       "stockage": {
-        "volumes_go": 40.0,
+        "volumes_go": 60.0,
         "snaps_go": 40.0,
         "images_go": 40.0,
-        "cout_total": 4.8
+        "cout_total": 5.6
       },
       "cout_ips_libres": 2.88
     }
