@@ -1,6 +1,6 @@
 {
-  "mis_a_jour": "2026-06-11T14:37:48.859165+00:00",
-  "cout_mois": 40.38,
+  "mis_a_jour": "2026-06-11T18:14:55.266895+00:00",
+  "cout_mois": 40.86,
   "projets": {
     "etabl-ia.fr": {
       "id": "3a6a9f92-bf5b-4ee9-9c8a-9ee7f48b18bd",
@@ -21,7 +21,7 @@
           "id": "112dde72-95ff-422a-831b-2dcaf32d92fa",
           "nom": "scw-gracious-wilbur",
           "type": "DEV1-XL",
-          "etat": "running",
+          "etat": "stopped",
           "ip": "51.15.143.223",
           "zone": "fr-par-1",
           "tarif_heure": 0.072
