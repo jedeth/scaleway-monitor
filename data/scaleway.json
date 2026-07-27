@@ -1,6 +1,6 @@
 {
-  "mis_a_jour": "2026-07-27T12:54:56.437950+00:00",
-  "cout_mois": 82.6,
+  "mis_a_jour": "2026-07-27T15:41:54.743845+00:00",
+  "cout_mois": 83.2,
   "projets": {
     "etabl-ia.fr": {
       "id": "3a6a9f92-bf5b-4ee9-9c8a-9ee7f48b18bd",
@@ -121,34 +121,8 @@
         "fr-par-2"
       ],
       "instances": [],
-      "volumes": [
-        {
-          "id": "794b077a-4511-4003-859a-9c9f95d9635d",
-          "nom": "Ubuntu Jammy GPU OS 12 passthrough",
-          "taille_go": 20.0,
-          "zone": "fr-par-2",
-          "serveur": null,
-          "cout_mois": 0.8
-        }
-      ],
-      "snapshots": [
-        {
-          "id": "30a5d4d3-e7cd-499f-8e81-9a1d246c83e5",
-          "nom": "golden-image-hackaton-php-v3",
-          "taille_go": 20.0,
-          "zone": "fr-par-2",
-          "date": "2026-05-11",
-          "cout_mois": 0.8
-        },
-        {
-          "id": "a8519e95-f64e-4f35-95f4-f45ca92d5b7b",
-          "nom": "golden-image-hackaton-php-v2",
-          "taille_go": 20.0,
-          "zone": "fr-par-2",
-          "date": "2026-05-11",
-          "cout_mois": 0.8
-        }
-      ],
+      "volumes": [],
+      "snapshots": [],
       "ips_flexibles": [
         {
           "id": "f8e7b228-87e6-4f39-a7c6-a1443aa93ebc",
@@ -184,10 +158,10 @@
         }
       ],
       "stockage": {
-        "volumes_go": 20.0,
-        "snaps_go": 40.0,
+        "volumes_go": 0.0,
+        "snaps_go": 0.0,
         "images_go": 0.0,
-        "cout_total": 2.4
+        "cout_total": 0.0
       },
       "cout_ips_libres": 2.88
     }
