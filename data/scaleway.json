@@ -1,6 +1,6 @@
 {
-  "mis_a_jour": "2026-10-19T12:22:57.955370+00:00",
-  "cout_mois": 55.09,
+  "mis_a_jour": "2026-10-19T19:04:20.646736+00:00",
+  "cout_mois": 56.7,
   "projets": {
     "etabl-ia.fr": {
       "id": "3a6a9f92-bf5b-4ee9-9c8a-9ee7f48b18bd",
@@ -8,6 +8,33 @@
         "fr-par-1"
       ],
       "instances": [
+        {
+          "id": "ca5b1661-f824-4b9c-a7ec-71e3618634d2",
+          "nom": "villebure-mai",
+          "type": "DEV1-M",
+          "etat": "running",
+          "ip": "163.172.162.197",
+          "zone": "fr-par-1",
+          "tarif_heure": 0.024
+        },
+        {
+          "id": "781c5ff0-406e-4ba1-bfe6-e4c1bb72f13f",
+          "nom": "temoin-ssd-local",
+          "type": "DEV1-XL",
+          "etat": "running",
+          "ip": "78.232.54.168",
+          "zone": "fr-par-1",
+          "tarif_heure": 0.072
+        },
+        {
+          "id": "f26a5a35-b04b-438a-aa61-b6b132ce15ca",
+          "nom": "villebure-secours",
+          "type": "DEV1-XL",
+          "etat": "running",
+          "ip": "78.232.46.156",
+          "zone": "fr-par-1",
+          "tarif_heure": 0.072
+        },
         {
           "id": "6bc1ec94-f173-4b9c-920b-9c641c851018",
           "nom": "scw-zealous-molina",
@@ -29,6 +56,30 @@
       ],
       "volumes": [
         {
+          "id": "6344aa84-291c-4978-ac3c-db51b61be58d",
+          "nom": "image-scw-gracious-wilbur_snap_1",
+          "taille_go": 40.0,
+          "zone": "fr-par-1",
+          "serveur": "villebure-mai",
+          "cout_mois": 1.6
+        },
+        {
+          "id": "fe78a73b-9227-4147-b143-1b392a6d182d",
+          "nom": "Ubuntu 22.04 Jammy Jellyfish",
+          "taille_go": 120.0,
+          "zone": "fr-par-1",
+          "serveur": "temoin-ssd-local",
+          "cout_mois": 4.8
+        },
+        {
+          "id": "9d5e634e-1797-45cc-a4ee-1d07a1ed7f6b",
+          "nom": "villebure-avant-secours-20261019",
+          "taille_go": 120.0,
+          "zone": "fr-par-1",
+          "serveur": "villebure-secours",
+          "cout_mois": 4.8
+        },
+        {
           "id": "41eb4847-27ba-44e2-86a8-285fc5c84d5e",
           "nom": "etabli-data",
           "taille_go": 40.0,
@@ -38,6 +89,14 @@
         }
       ],
       "snapshots": [
+        {
+          "id": "83edba4f-a381-4c8c-a24f-7b7cee4136b0",
+          "nom": "villebure-avant-secours-20261019",
+          "taille_go": 40.0,
+          "zone": "fr-par-1",
+          "date": "2026-10-19",
+          "cout_mois": 1.6
+        },
         {
           "id": "f9e71f49-82ca-4ad8-8d48-7ccf5f9f58b3",
           "nom": "image-scw-gracious-wilbur_snap_1",
@@ -73,6 +132,30 @@
           "cout_mois": 0
         },
         {
+          "id": "69aff4ea-5749-4e80-b5d9-91fd8bfeb4ec",
+          "adresse": "163.172.162.197",
+          "zone": "fr-par-1",
+          "attachee": true,
+          "serveur": "villebure-mai",
+          "cout_mois": 0
+        },
+        {
+          "id": "620fc0a6-a814-416b-aff7-e003d90430cc",
+          "adresse": "78.232.54.168",
+          "zone": "fr-par-1",
+          "attachee": true,
+          "serveur": "temoin-ssd-local",
+          "cout_mois": 0
+        },
+        {
+          "id": "a5d3114b-35bb-454d-8414-0a1b0c140d96",
+          "adresse": "78.232.46.156",
+          "zone": "fr-par-1",
+          "attachee": true,
+          "serveur": "villebure-secours",
+          "cout_mois": 0
+        },
+        {
           "id": "53ec66ed-e69b-434a-b9a9-f307cab8eee0",
           "adresse": "51.15.143.223",
           "zone": "fr-par-1",
@@ -91,10 +174,10 @@
         }
       ],
       "stockage": {
-        "volumes_go": 40.0,
-        "snaps_go": 40.0,
-        "images_go": 0.0,
-        "cout_total": 3.2
+        "volumes_go": 320.0,
+        "snaps_go": 80.0,
+        "images_go": 80.0,
+        "cout_total": 19.2
       },
       "cout_ips_libres": 1.44
     },
