@@ -7,6 +7,7 @@ Appelle directement api.scaleway.com, aucun serveur intermédiaire requis.
 import os
 import sys
 import json
+import time
 import urllib.request
 import urllib.error
 from datetime import datetime, timezone
@@ -43,21 +44,26 @@ def scw_get(path: str) -> dict:
         return {}
 
 
-def send_telegram(message: str) -> bool:
+def send_telegram(message: str, essais: int = 3) -> bool:
+    """Envoie le message ; réessaie si Telegram est lent (timeout 30 s, 3 essais)."""
     url = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage"
     payload = json.dumps({
         "chat_id": TELEGRAM_CHAT_ID,
         "text": message,
         "parse_mode": "HTML",
     }).encode()
-    req = urllib.request.Request(url, data=payload,
-                                  headers={"Content-Type": "application/json"})
-    try:
-        with urllib.request.urlopen(req, timeout=10) as r:
-            return json.loads(r.read()).get("ok", False)
-    except Exception as e:
-        print(f"[ERROR] Telegram: {e}", file=sys.stderr)
-        return False
+    for n in range(1, essais + 1):
+        req = urllib.request.Request(url, data=payload,
+                                      headers={"Content-Type": "application/json"})
+        try:
+            with urllib.request.urlopen(req, timeout=30) as r:
+                return json.loads(r.read()).get("ok", False)
+        except Exception as e:
+            print(f"[WARN] Telegram essai {n}/{essais}: {e}", file=sys.stderr)
+            if n < essais:
+                time.sleep(10 * n)
+    print("[ERROR] Telegram: échec après plusieurs essais", file=sys.stderr)
+    return False
 
 
 def format_euros(v: float) -> str:
