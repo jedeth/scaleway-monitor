@@ -1,6 +1,6 @@
 {
-  "mis_a_jour": "2026-10-30T12:16:46.248679+00:00",
-  "cout_mois": 96.66,
+  "mis_a_jour": "2026-10-30T18:26:03.425423+00:00",
+  "cout_mois": 97.29,
   "projets": {
     "etabl-ia.fr": {
       "id": "3a6a9f92-bf5b-4ee9-9c8a-9ee7f48b18bd",
@@ -16,67 +16,17 @@
           "ip": "212.47.240.181",
           "zone": "fr-par-1",
           "tarif_heure": 0.048
-        },
-        {
-          "id": "112dde72-95ff-422a-831b-2dcaf32d92fa",
-          "nom": "scw-gracious-wilbur",
-          "type": "DEV1-XL",
-          "etat": "stopped",
-          "ip": "51.15.143.223",
-          "zone": "fr-par-1",
-          "tarif_heure": 0.072
         }
       ],
       "volumes": [],
-      "snapshots": [
-        {
-          "id": "83edba4f-a381-4c8c-a24f-7b7cee4136b0",
-          "nom": "villebure-avant-secours-20261019",
-          "taille_go": 40.0,
-          "zone": "fr-par-1",
-          "date": "2026-10-19",
-          "cout_mois": 1.6
-        },
-        {
-          "id": "f9e71f49-82ca-4ad8-8d48-7ccf5f9f58b3",
-          "nom": "image-scw-gracious-wilbur_snap_1",
-          "taille_go": 40.0,
-          "zone": "fr-par-1",
-          "date": "2026-05-12",
-          "cout_mois": 1.6
-        }
-      ],
+      "snapshots": [],
       "ips_flexibles": [
-        {
-          "id": "87d818f2-ab66-4286-a6e2-464a38c7151b",
-          "adresse": null,
-          "zone": "fr-par-1",
-          "attachee": false,
-          "serveur": null,
-          "cout_mois": 1.44
-        },
-        {
-          "id": "5559183e-8faf-4714-aac7-f1836d91c310",
-          "adresse": null,
-          "zone": "fr-par-1",
-          "attachee": true,
-          "serveur": "scw-gracious-wilbur",
-          "cout_mois": 0
-        },
         {
           "id": "233135b1-daed-4ace-82f1-1e74b17e5ed1",
           "adresse": "212.47.240.181",
           "zone": "fr-par-1",
           "attachee": true,
           "serveur": "scw-zealous-molina",
-          "cout_mois": 0
-        },
-        {
-          "id": "53ec66ed-e69b-434a-b9a9-f307cab8eee0",
-          "adresse": "51.15.143.223",
-          "zone": "fr-par-1",
-          "attachee": true,
-          "serveur": "scw-gracious-wilbur",
           "cout_mois": 0
         }
       ],
@@ -91,11 +41,11 @@
       ],
       "stockage": {
         "volumes_go": 0.0,
-        "snaps_go": 80.0,
+        "snaps_go": 0.0,
         "images_go": 0.0,
-        "cout_total": 3.2
+        "cout_total": 0.0
       },
-      "cout_ips_libres": 1.44
+      "cout_ips_libres": 0
     },
     "TESTPROD": {
       "id": "3373abc8-dccd-4529-9dc7-cfd185632ac5",
@@ -106,24 +56,7 @@
       "instances": [],
       "volumes": [],
       "snapshots": [],
-      "ips_flexibles": [
-        {
-          "id": "f8e7b228-87e6-4f39-a7c6-a1443aa93ebc",
-          "adresse": null,
-          "zone": "fr-par-2",
-          "attachee": false,
-          "serveur": null,
-          "cout_mois": 1.44
-        },
-        {
-          "id": "8aef3f56-0801-485b-9c4d-03845c2880db",
-          "adresse": "51.159.119.210",
-          "zone": "fr-par-2",
-          "attachee": false,
-          "serveur": null,
-          "cout_mois": 1.44
-        }
-      ],
+      "ips_flexibles": [],
       "groupes_securite": [
         {
           "id": "87f1f0d2-742a-43ae-a4d7-2f47203684da",
@@ -146,7 +79,7 @@
         "images_go": 0.0,
         "cout_total": 0.0
       },
-      "cout_ips_libres": 2.88
+      "cout_ips_libres": 0
     }
   }
 }
